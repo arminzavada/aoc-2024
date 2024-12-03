@@ -43,26 +43,28 @@ import kotlin.math.abs
  * Your actual left and right lists contain many location IDs. What is the total distance between your lists?
  */
 
-val leftQueue = PriorityQueue<Int>()
-val rightQueue = PriorityQueue<Int>()
+fun main() {
+    val leftQueue = PriorityQueue<Int>()
+    val rightQueue = PriorityQueue<Int>()
 
-File("input").useLines { lines ->
-    lines.filter {
-        it.isNotEmpty()
-    }.forEach {
-        val split = it.split("   ")
-        leftQueue.add(split[0].toInt())
-        rightQueue.add(split[1].toInt())
+    File("subprojects/day-1/input").useLines { lines ->
+        lines.filter {
+            it.isNotEmpty()
+        }.forEach {
+            val split = it.split("   ")
+            leftQueue.add(split[0].toInt())
+            rightQueue.add(split[1].toInt())
+        }
     }
+
+    var sum = 0
+
+    while (leftQueue.any()) {
+        val left = leftQueue.poll()
+        val right = rightQueue.poll()
+
+        sum += abs(left - right)
+    }
+
+    println(sum)
 }
-
-var sum = 0
-
-while (leftQueue.any()) {
-    val left = leftQueue.poll()
-    val right = rightQueue.poll()
-
-    sum += abs(left - right)
-}
-
-println(sum)
