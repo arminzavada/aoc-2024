@@ -6,6 +6,7 @@ rootProject.name = "aoc-2024"
 include(
     "day-1",
     "day-2",
+    "day-3",
 )
 
 rootProject.children.forEach { project ->
